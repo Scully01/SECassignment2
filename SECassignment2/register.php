@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- 
 <head>
     <title>Secure Electronic Commerce</title>
     <meta charset="utf-8">
@@ -33,31 +33,39 @@
             document.getElementById('password').value = "";
                      }
     </script>
+</head> -->
+    <head>
+    <script type="text/javascript" src="register.js"></script>
+
+<script type="text/javascript">
+    function addToCSVFile() {
+        var csvData = new Array();  // To collect the data
+        var csvFilePath = "user.csv"; // File name
+
+        // Collect General Information
+        csvData[0] = document.getElementById('username').value;
+        csvData[1] = document.getElementById('password').value;
+
+          var fso = new ActiveXObject('Scripting.FileSystemObject');
+        var oStream = fso.OpenTextFile(csvFilePath, 8, true, 0);
+        oStream.WriteLine(csvData.join(','));
+        oStream.Close();
+        clearData();
+        alert("Registered User Successfully!");
+ }
+
+ function clearData() {
+        document.getElementById('username').value = "";
+        document.getElementById('password').value = "";
+                 }
+</script>
+<?php include 'header.php';?>
 </head>
 
 <body>
-    <div class="jumbotron text-center" style="margin-bottom:0">
-        <h1>Shopping Site</h1>
-        <p>Secure Payment!</p>
-    </div>
+  
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="index.php">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item" class="buttonalign">
-                    <a class="nav-link" href="register.php">Register</a>
-                </li>
-                <li class="nav-item" class="buttonalign">
-                    <a class="nav-link" href="login.php">Login</a>
-                </li>
-            </ul>
-            </ul>
-        </div>
-    </nav>
+    
 
     <div class="container" style="margin-top:30px">
         <div class="row">
@@ -83,21 +91,7 @@
             </div>
         </div>
     </div>
-
-    <footer>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="contactus.php">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sitemap.php">Sitemap</a>
-                    </li>
-                </ul>
-            </div>
-            </div>
-    </footer>
+    <?php include 'footer.php';?>
 </body>
 
 </html>
