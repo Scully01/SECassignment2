@@ -27,10 +27,14 @@
           </a>
         </li>
         <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link" href="shopping.php">Shopping</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="shoppingCart.php">Shopping Cart</a>
+=======
+          <a class="nav-link" href="ShoppingCart.php">Shopping Cart</a>
+>>>>>>> 80efd4eff38fb7c12f3f1263fa045c491a165ab8
         </li>
         <li class="nav-item">
           <a class="nav-link" href="register.php">Register</a>
