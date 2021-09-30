@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<head>
+<!-- <head>
     <title>Secure Electronic Commerce</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +33,14 @@
             </ul>
             </ul>
         </div>
-    </nav>
+    </nav> -->
+
+    <head>
+<?php include 'header.php';?>
+</head>
+
+<body>
+   
 
     <div class="container" style="margin-top:30px">
         <div class="row">
@@ -106,20 +113,7 @@
     }
     ?>
 
-    <footer>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="contactus.php">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sitemap.php">Sitemap</a>
-                    </li>
-                </ul>
-            </div>
-            </div>
-    </footer>
+<?php include 'footer.php';?>
 </body>
 
 </html>
