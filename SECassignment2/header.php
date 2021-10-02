@@ -51,7 +51,7 @@
 <div class="container" style="margin-top:30px">
         <div class="row">
             <div class="col-sm-8">
-                <h1>WestBorn Shopping</h1>
+                <h1 class="display-4">WestBorn Shopping</h1>
                 <p> </p>
             </div>
         </div>
