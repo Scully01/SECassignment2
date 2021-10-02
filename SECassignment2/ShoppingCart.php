@@ -2,7 +2,6 @@
 
     <head>
 <?php include 'header.php';?>
-<<<<<<< HEAD
 <?php function writeToFile($fileName, $content){
                                             $file = fopen("/database/cart.txt","a"); 
                                             fwrite($file, $content);
@@ -66,9 +65,4 @@
                                         writeToFile("/database/cart.txt", $content)
                                         ?>
 
-=======
-</head>
-
-<body>
->>>>>>> 80efd4eff38fb7c12f3f1263fa045c491a165ab8
 <?php include 'footer.php';?>
