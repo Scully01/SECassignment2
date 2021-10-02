@@ -9,6 +9,8 @@
 
 <body>
     <?php
+
+  
     //Receive username from client side
     $entered_username = $_POST['username'];
     //Receive password from client side
@@ -17,7 +19,7 @@
     if ($entered_username != "" & $entered_password != "") {
         $login = 0;
         //read users.txt line by line
-        foreach (file('users.txt') as $line) {
+        foreach (file('database/users.txt') as $line) {
             //split each line as two parts
             list($username, $password) = explode(",", $line);
             //verify if an exist user with the same username

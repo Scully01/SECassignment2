@@ -9,6 +9,9 @@ session_start();
 
 <body>
     <?php
+
+  
+
     //Receive username from client side
     $entered_username = $_POST['username'];
     //Receive password from client side
@@ -17,7 +20,7 @@ session_start();
     if ($entered_username != "" & $entered_password != "") {
         $register = 0;
         //read users.txt line by line
-        foreach (file('users.txt') as $line) {
+        foreach (file('database/users.txt') as $line) {
             //split each line as two parts
             list($username, $password) = explode(",", $line);
             //verify if an exist user with the same username
@@ -31,12 +34,12 @@ session_start();
             echo "The user exists!";
         } else {
             //open a file named "text.txt"
-            $file = fopen("users.txt", "a");
+            $file = fopen("database/users.txt", "a");
             //insert this user into the users.txt file
             fwrite($file, $entered_username . "," . $entered_password . "\n");
             //close the "$file"
             fclose($file);
-            echo "The user has been added to the users.txt";
+            echo "The user has been added to the database/users.txt";
             header('Location: login.php');
         }
     } else {
