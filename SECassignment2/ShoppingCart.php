@@ -42,7 +42,11 @@
 
 
 <script src="sha256.js"></script>
+<<<<<<< Updated upstream
 
+=======
+<script src="js/main.js" defer></script>
+>>>>>>> Stashed changes
 <script src="rsa.js"></script>
 </head>
 
@@ -52,6 +56,7 @@
 <div class = "grid-container">
   <div class="grid-item">
     <h3>Enter Card Details</h3>
+<<<<<<< Updated upstream
     <div class = "pay-container">
       <div class="pay-item">
         <input name="name" id="name" type="text" placeholder='CARD NAME'maxlength="30" pattern="[\d ]{10,30}" required >
@@ -74,11 +79,76 @@
         <br/><br/>
 
   </div>
+=======
+    <!-- <div class = "pay-container">
+      <form action="#" method="post">
+        <div class="pay-item"> 
+          <label for="cc-cc-number">Card cc-number </label>
+          <input name="cc-number" id="cc-number" type="text" placeholder='CARD cc-number' >
+          <br/><br/>
+        </div>
+        <div class="pay-item">
+          <input name="cc-name" id="cc-name" type="text" placeholder='CARD NAME'd >
+          <br/><br/>
+        </div>
+        <div class="pay-item">
+          <input name="cc-exp" id="cc-exp" type="text" placeholder='EXPIRY DATE (MM/YY)'>
+          <br/><br/>
+        </div>
+        <div class="pay-item"> 
+          <input name="cc-csc" id="cc-csc" type="text" placeholder='cc-csc'>
+          <br/><br/>
+        </div>
+      </div>
+          <button type="button" onclick="encryption()">Place Order</button>
+          <br/><br/>
+      </form>
+    </div> -->
+    <form action="confirm.php" method="post">
+
+<h1>Payment form</h1>
+
+<section>        
+  <label for="cc-number">Card number</label> <br>
+  <!-- Allow for spaces and for shorter and longer payment card numbers -->
+  <input id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="50" pattern="[\d ]{10,30}" required>
+</section>
+
+<section>        
+  <label for="cc-name">Name on card</label> <br>
+  <input id="cc-name" name="cc-name" autocomplete="cc-name" maxlength="30" pattern="[\p{L} \-\.]+" required>
+</section>
+
+<section id="cc-exp-csc">      
+  <div>
+    <label for="cc-exp">Expiry date</label> <br>
+    <input id="cc-exp" name="cc-exp" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" required>
+  </div> 
+  <div>
+    <label for="cc-csc">Security code</label> <br>
+    <input id="cc-csc" name="cc-csc" inputmode="numeric" maxlength="3" autocomplete="cc-csc" required>
+  </div>
+</section>  
+
+
+<button onclick="encryption()" >Complete payment</button>
+<p style="font-size: 8px;" name="encrypted" id="encrypted"></p>
+
+</form>
+</div>
+
+
+
+>>>>>>> Stashed changes
 
 
     <script type="text/javascript">
       function hash() {
+<<<<<<< Updated upstream
           var input = document.getElementById('name').value + document.getElementById('number').value + document.getElementById('date').value + document.getElementById('CCV').value;
+=======
+          var input = document.getElementById('cc-name').value + document.getElementById('cc-number').value + document.getElementById('cc-exp').value + document.getElementById('cc-csc').value;
+>>>>>>> Stashed changes
 
           var hash = SHA256.hash(input);
           document.getElementById('hash_value').innerHTML = hash;
@@ -87,8 +157,13 @@
     
         
       function encryption(){
+<<<<<<< Updated upstream
         var hashed_value = document.getElementById('name').value + document.getElementById('number').value + document.getElementById('date').value + document.getElementById('CCV').value;
         var ciphertext = RSA_encryption(hashed_value, pubilc_key);
+=======
+        var data = document.getElementById('cc-name').value + document.getElementById('cc-number').value + document.getElementById('cc-exp').value + document.getElementById('cc-csc').value;
+        var ciphertext = RSA_encryption(data, pubilc_key);
+>>>>>>> Stashed changes
             
         document.getElementById('encrypted').innerHTML = ciphertext;
             
@@ -111,6 +186,7 @@
         var decrypted = decrypt.decrypt(ciphertext);
         return decrypted;
       }
+<<<<<<< Updated upstream
       function cardnumber(inputtxt){
         var cardno = /^(?:5[1-5][0-9]{14})$/;
         if(inputtxt.value.match(cardno))
@@ -124,6 +200,8 @@
         }
       }
 
+=======
+>>>>>>> Stashed changes
 
     </script>
 
@@ -173,7 +251,11 @@
 
     </div>
   </div>
+<<<<<<< Updated upstream
   <button type="button" class="btn btn-primary" href='shopping.php'>Back to Shopping</button>
+=======
+  <button type="button" class="btn btn-primary" href='index.php'>Back to Shopping</button>
+>>>>>>> Stashed changes
   </div>
   </div>
   <?php
