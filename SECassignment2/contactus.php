@@ -39,27 +39,27 @@
     <form class = "card p-5">
         <div class = "form-row">
             <div class="form-group col-md-8 align-items-center"  >
-                <label for="firstname">First Name</label>
+                <label for="firstname">First Name : </label>
                     <input type="text" id="firstname" name="firstname" placeholder="Your first name" />
             </div>
                 
             <div class="form-group col-md-8 p-2" >
-                    <label for="lname">Last Name</label>
+                    <label for="lname">Last Name : </label>
                     <input type="text" id="lastname" name="lastname" placeholder="Your last name" />
             </div>
                
             <div class="form-group col-md-8" >
-                <label for="mobilenumber">Mobile Number</label>
+                <label for="mobilenumber">Mobile Number : </label>
                 <input type="text" id="mobilenumber" name="mobilenumber" placeholder="Enter your mobile number.." />
             </div>
                
             <div class="form-group col-md-8 p-2" >
-                <label for="email">Email Address</label>
+                <label for="email">Email Address : </label>
                 <input type="text" id="email" name="email" placeholder="Enter email address" />
             </div>
                 
             <div class="form-group col-md-8 p-2" >
-                <label for="messageus">Message Us!</label>
+                <label for="messageus">Message Us! </label>
                 <textarea name="messageus" placeholder="Send us a message..."  rows = "3" ></textarea>
             </div>
         </div>

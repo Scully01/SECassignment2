@@ -17,9 +17,19 @@
                     <a href = "login.php" class = "btn btn-secondary">Login</a>
                     <br>
                     <br>
-                    <p>Now that you're logged in, we can take your order number. To ensure nobody else can access your order, we will provide an encyption method to ensure security. Please use the follow the prompts below to get started.<p>
-                    </div>
+                    <p>Now that you're logged in, we can take your order number. To ensure nobody else can access your order, we will provide an encyption method to for security. Please use the follow the prompts below to get started.<p>
+                    <FORM ACTION="ordersserver.php" method="POST">
+                        <label for="ordernumber">Enter your Order No:</label>
+                        <input type="text" id="message" placeholder = "e.g. A1CE33" name="message" />
+                        <br/><br/>
+                        <label for = "ordernumber">Create a session key:</label> 
+                        <input type="text" id="DES_Encryption_Key" placeholder = "It can be anything." name="DES_Encryption_Key" />
+                        <br/><br/>
+                        <button type="submit" onclick="DES_encryption()">Submit Request</button>
+                    </FORM>
+                 </div>
                     
+
                 </div>
                 <div class="card bg-light border-dark col-lg-6  mb-3 p-2">
                     <div class="card-body text-center">
@@ -37,6 +47,21 @@
 </div>
 </div>
 
+
+<script type = "text/javascript" src = "des.js"></script>
+<script type = "text/javascript">
+
+function DES_encryption() {
+    var message = document.getElementById("message").value;
+    var key = document.getElementById("DES_Encryption_Key").value;
+
+    var encrypted = javascript_des_encryption(key, message);
+    document.getElementById("message").value = encrypted;
+
+    return false;
+}
+
+</script>
 
 
 
