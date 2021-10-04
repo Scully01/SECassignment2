@@ -19,14 +19,26 @@
                     <br>
                     <p>Now that you're logged in, we can take your order number. To ensure nobody else can access your order, we will provide an encyption method to for security. Please use the follow the prompts below to get started.<p>
                     <FORM ACTION="ordersserver.php" method="POST">
-                        <label for="ordernumber">Enter your Order No:</label>
+                        <label for="ordernumber">Enter your Order No : </label>
                         <input type="text" id="message" placeholder = "e.g. A1CE33" name="message" />
                         <br/><br/>
-                        <label for = "ordernumber">Create a session key:</label> 
-                        <input type="text" id="DES_Encryption_Key" placeholder = "It can be anything." name="DES_Encryption_Key" />
+                        <label for = "ordernumber">Use our public key : </label> 
+                        <input type="text" id="DES_Encryption_Key" placeholder = "WestBorn" name="DES_Encryption_Key" />
                         <br/><br/>
                         <button type="submit" onclick="DES_encryption()">Submit Request</button>
                     </FORM>
+
+                    
+                    <br>
+                    <br>
+                    <br>
+
+                    <form method = "post" action = "ordersserver.php">
+                        <label for="ordermessage">Send us a message with your enquiry :  </label> 
+                        <input id = "ordermessage" name = "ordermessage" type = "text">
+                        <br><br>
+                        <button type = "submit" onclick = "RSA_encryption()">Submit Message</button>
+                    </form>
                  </div>
                     
 
@@ -59,6 +71,21 @@ function DES_encryption() {
     document.getElementById("message").value = encrypted;
 
     return false;
+}
+
+</script>
+
+<script src = "rsa.js"></script>
+<script type = "text/javascript">
+
+function RSA_encryption() {
+    var plaintext = document.getElementById("ordermessage").value;
+    var public_key = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzdxaei6bt/xIAhYsdFdW62CGTpRX+GXoZkzqvbf5oOxw4wKENjFX7LsqZXxdFfoRxEwH90zZHLHgsNFzXe3JqiRabIDcNZmKS2F0A7+Mwrx6K2fZ5b7E2fSLFbC7FsvL22mN0KNAp35tdADpl4lKqNFuF7NT22ZBp/X3ncod8cDvMb9tl0hiQ1hJv0H8My/31w+F+Cdat/9Ja5d1ztOOYIx1mZ2FD2m2M33/BgGY/BusUKqSk9W91Eh99+tHS5oTvE8CI8g7pvhQteqmVgBbJOa73eQhZfOQJ0aWQ5m2i0NUPcmwvGDzURXTKW+72UKDz671bE7YAch2H+U7UQeawwIDAQAB-----END PUBLIC KEY-----";
+
+    var encrypt = new JSEncrypt();
+    encrypt.setPublicKey(public_key);
+    var encrypted = encrypt.encrypt(plaintext);
+    document.getElementById("ordermessage").value = encrypted;
 }
 
 </script>
