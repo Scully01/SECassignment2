@@ -19,7 +19,7 @@ include 'header.php';
         header('Location: orders.php');
     }
 
-    $key = 'WestBorn';
+    $key = "WestBorn";
 
     $recovered_message = php_des_decryption($key, $message);
 
@@ -29,9 +29,11 @@ include 'header.php';
 
     echo "Recovered the Order No: " . $recovered_message . "<br/><br/>";
 
-    $file = fopen("database.txt", "a");
-    fwrite($file, $recovered_message. "\n");
-    fclose($file);
+    $file = fopen("database/database.txt","a");
+	
+	fwrite($file,$recovered_message."\n");
+	
+	fclose($file);
 
     echo "The sent Order No has been added to our database, and we shall get back to you as soon as possible.";
     
