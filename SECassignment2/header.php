@@ -30,7 +30,7 @@
           <a class="nav-link" href="shopping.php">Shopping</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="shoppingCart.php">Shopping Cart</a>
+          <a class="nav-link" href="ShoppingCart.php">Shopping Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="register.php">Register</a>
@@ -48,10 +48,11 @@
   </div>
 </nav>
 
-<div class="container" style="margin-top:30px">
+<div class="container" >
         <div class="row">
             <div class="col-sm-8">
-                <h1 class="display-4">WestBorn Shopping</h1>
+              <img src = "westBornShopping.jpg" height = "300">
+                
                 <p> </p>
             </div>
         </div>

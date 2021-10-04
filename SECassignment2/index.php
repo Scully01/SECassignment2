@@ -44,9 +44,49 @@
 </head>
 
 <body>
+<div class="container-fluid">
+    <div class = "row p-5 ">
+                <div class="card bg-light border-dark col-lg-6  mb-3 p-2">
+                    <div class="card-body text-center">
+                    <br></br>
+                    <br></br>
+                    <a href="shopping.php" class="stretched-link" style = "font-size:30px;color:black;">Shopping</a>
+                    <br></br>
+                    <br></br>
+                    </div>
+                </div>
+                <div class="card bg-light border-dark col-lg-6  mb-3 p-2">
+                    <div class="card-body text-center">
+                    <br></br>
+                    <br></br>
+                    <a href="register.php" class="stretched-link" style = "font-size:30px;color:black;">Register Now!</a>
+                    <br></br>
+                    <br></br>
+                    </div>
+                </div>
+                <div class="card bg-light border-dark col-lg-6 mb-3 p-2">
+                    <div class="card-body text-center ">
+                    <br></br>
+                    <br></br>
+                    <a href="orders.php" class="stretched-link" style = "font-size:30px;color:black;">Check your Order!</a>
+                    <br></br>
+                    <br></br>
+                    </div>
+                </div>
+                <div class="card bg-light border-dark col-lg-6  mb-3 p-2">
+                    <div class="card-body text-center">
+                    <br></br>
+                    <br></br>
+                    <a href="ShoppingCart.php" class="stretched-link" style = "font-size:30px;color:black;">Shopping Cart</a>
+                    <br></br>
+                    <br></br>
+                    </div>
+                </div>
+            </div>
+    </div>
 
-
-
+            <br>
+            <br>
 
     <?php include 'footer.php';?>
     </body>
