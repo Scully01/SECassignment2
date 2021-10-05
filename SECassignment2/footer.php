@@ -1,4 +1,4 @@
-<footer>
+<footer  >
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
