@@ -2,7 +2,12 @@
 <html>
 
 <head>
-<?php include 'header.php';?>
+<?php 
+
+include 'header.php';
+
+
+?>
 </head>
 
 <body>
@@ -20,12 +25,12 @@
                     <p>Now that you're logged in, we can take your order number. To ensure nobody else can access your order, we will provide an encyption method to for security. Please use the follow the prompts below to get started.<p>
                     <FORM ACTION="ordersserver.php" method="POST">
                         <label for="ordernumber">Enter your Order No : </label>
-                        <input type="text" id="message" placeholder = "e.g. A1CE33" name="message" />
+                        <input type="text" id="message" placeholder = "e.g. A1CE33" auutocomplete = "ordernumber" min-length = "2" name="message" required >
                         <br/><br/>
-                        <label for = "ordernumber">Use our public key : </label> 
-                        <input type="text" id="DES_Encryption_Key" placeholder = "WestBorn" name="DES_Encryption_Key" />
+                        <label for = "sessionkey">Use our session key : </label> 
+                        <input type="text" id="DES_Encryption_Key" placeholder = "WestBorn" name="DES_Encryption_Key" required />
                         <br/><br/>
-                        <button type="submit" onclick="DES_encryption()">Submit Request</button>
+                        <button type="submit" name = "decrypted" id = "decrypted" onclick="DES_encryption()">Submit Request</button>
                     </FORM>
 
                     
@@ -33,13 +38,13 @@
                     <br>
                     <br>
 
-                    <form method = "post" action = "ordersserver.php">
-                        <label for="ordermessage">Send us a message with your enquiry :  </label> 
-                        <input id = "ordermessage" name = "ordermessage" type = "text">
+                    <form method = "post" action = "ordersRSAserver.php">
+                        <label for="ordermessage">Send us an enquiry :  </label> 
+                        <input id = "ordermessage" name = "ordermessage" autocomplete = "ordermessage" minlength = "2" placeholder = "It can be anything!" type = "textarea" required >
                         <br><br>
-                        <button type = "submit" onclick = "RSA_encryption()">Submit Message</button>
+                        <button type = "submit" name = "encrypted" id = "encrypted" onclick = "rsa_encryption()">Submit Message</button>
                     </form>
-                 </div>
+                 </div> 
                     
 
                 </div>
@@ -48,6 +53,9 @@
                     <h1>Want to purchase something else?</h1>
                     <p>Forgot to add an item to your order? Just click below to go back to shopping!</p>
                     <a href="shopping.php" class="btn btn-secondary">Take me to shopping</a>
+                    <br>
+                    <br>
+                    <br>
                     <br>
                     <br>
                     <br>
@@ -68,27 +76,31 @@ function DES_encryption() {
     var key = document.getElementById("DES_Encryption_Key").value;
 
     var encrypted = javascript_des_encryption(key, message);
-    document.getElementById("message").value = encrypted;
+    document.getElementById("decrypted").value = encrypted;
 
     return false;
 }
 
 </script>
 
-<script src = "rsa.js"></script>
-<script type = "text/javascript">
+<script src="rsa.js"></script>
+    <script type="text/javascript">
+		function rsa_encryption(){
 
-function RSA_encryption() {
-    var plaintext = document.getElementById("ordermessage").value;
-    var public_key = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzdxaei6bt/xIAhYsdFdW62CGTpRX+GXoZkzqvbf5oOxw4wKENjFX7LsqZXxdFfoRxEwH90zZHLHgsNFzXe3JqiRabIDcNZmKS2F0A7+Mwrx6K2fZ5b7E2fSLFbC7FsvL22mN0KNAp35tdADpl4lKqNFuF7NT22ZBp/X3ncod8cDvMb9tl0hiQ1hJv0H8My/31w+F+Cdat/9Ja5d1ztOOYIx1mZ2FD2m2M33/BgGY/BusUKqSk9W91Eh99+tHS5oTvE8CI8g7pvhQteqmVgBbJOa73eQhZfOQJ0aWQ5m2i0NUPcmwvGDzURXTKW+72UKDz671bE7YAch2H+U7UQeawwIDAQAB-----END PUBLIC KEY-----";
-
-    var encrypt = new JSEncrypt();
-    encrypt.setPublicKey(public_key);
-    var encrypted = encrypt.encrypt(plaintext);
-    document.getElementById("ordermessage").value = encrypted;
-}
+			var plaintext = document.getElementById("ordermessage").value;
+			var pubilc_key = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzdxaei6bt/xIAhYsdFdW62CGTpRX+GXoZkzqvbf5oOxw4wKENjFX7LsqZXxdFfoRxEwH90zZHLHgsNFzXe3JqiRabIDcNZmKS2F0A7+Mwrx6K2fZ5b7E2fSLFbC7FsvL22mN0KNAp35tdADpl4lKqNFuF7NT22ZBp/X3ncod8cDvMb9tl0hiQ1hJv0H8My/31w+F+Cdat/9Ja5d1ztOOYIx1mZ2FD2m2M33/BgGY/BusUKqSk9W91Eh99+tHS5oTvE8CI8g7pvhQteqmVgBbJOa73eQhZfOQJ0aWQ5m2i0NUPcmwvGDzURXTKW+72UKDz671bE7YAch2H+U7UQeawwIDAQAB-----END PUBLIC KEY-----";
+			
+			var encrypt = new JSEncrypt();
+			encrypt.setPublicKey(pubilc_key);
+			var encrypted = encrypt.encrypt(plaintext);
+		  
+			document.getElementById("encrypted").value = encrypted;	
+		}
 
 </script>
+
+
+
 
 
 

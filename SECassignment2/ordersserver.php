@@ -9,11 +9,11 @@ include 'header.php';
     <body>
 
 <?php
-    if(isset($_POST['message']) == FALSE) {
+    if(isset($_POST['decrypted']) == FALSE) {
         header('Location: orders.php');
     }
 
-    $message = $_POST['message'];
+    $message = $_POST['decrypted'];
 
     if($message == "") {
         header('Location: orders.php');
