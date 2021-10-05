@@ -1,0 +1,30 @@
+{
+    "ROCK@EMAIL.COM": {
+        "firstname": "THE",
+        "lastname": "ROCK",
+        "email": "ROCK@EMAIL.COM",
+        "password": "Abc!23",
+        "referral": "No"
+    },
+    "Mitch@email.com": {
+        "firstname": "Mitch",
+        "lastname": "Traj",
+        "email": "Mitch@email.com",
+        "password": "Abc!23",
+        "referral": null
+    },
+    "scully@email.com": {
+        "firstname": "matt",
+        "lastname": "scully",
+        "email": "scully@email.com",
+        "password": "Abc!23",
+        "referral": null
+    },
+    "matt@email.com": {
+        "firstname": "matt",
+        "lastname": "scully",
+        "email": "matt@email.com",
+        "password": "Abc!23",
+        "referral": null
+    }
+}
