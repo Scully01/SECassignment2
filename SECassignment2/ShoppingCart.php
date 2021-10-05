@@ -2,6 +2,7 @@
 
     <head>
 <?php include 'header.php';
+include 'bouncer.php';
 //  function writeToFile($fileName, $content){
 //                                             $file = fopen("/Secure_Eccomerce/Assignment2/SECassignment2/SECassignment2/database/cart.txt","a"); 
 //                                             fwrite($file, $content);
@@ -12,7 +13,7 @@
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 40% 60%;
   background-color: grey;
   
 }
@@ -39,61 +40,53 @@
 }
 
 </style>
-
-
 <script src="sha256.js"></script>
+<script src="js/main.js" defer></script>
 <script src="rsa.js"></script>
-</head>
 
-<body>
+<?php
+    if (isset($_POST['encrypted'])) {
+    $myfile = fopen("database/payment.txt", "a");
+    $txt = $_POST["encrypted"] . PHP_EOL;
+    fwrite($myfile, $txt);
+    fclose($myfile);
+    echo $alert;
 
-<!-- P A Y M E N T  D E T A I L S  B E L O W  -->
-<div class = "grid-container">
-  <div class="grid-item">
-    <h3>Enter Card Details</h3>
-    <div class = "pay-container">
-      <div class="pay-item">
-        <input name="name" id="name" type="text" placeholder='CARD NAME'maxlength="30" pattern="[\d ]{10,30}" required >
-        <br/><br/>
-      </div>
-      <div class="pay-item"> 
-        <input name="number" id="number" type="text" placeholder='CARD NUMBER' >
-        <br/><br/>
-      </div>
-      <div class="pay-item">
-        <input name="date" id="date" type="text" placeholder='EXPIRY DATE (MM/YY)'>
-        <br/><br/>
-      </div>
-      <div class="pay-item"> 
-        <input name="CCV" id="CCV" type="text" placeholder='CCV'>
-        <br/><br/>
-      </div>
-    </div>
-        <button type="button" onclick="encryption()">Place Order</button>
-        <br/><br/>
-
-  </div>
+    }
+?>
 
 
     <script type="text/javascript">
-      function hash() {
-          var input = document.getElementById('name').value + document.getElementById('number').value + document.getElementById('date').value + document.getElementById('CCV').value;
 
-          var hash = SHA256.hash(input);
-          document.getElementById('hash_value').innerHTML = hash;
-          document.getElementById('hash_value').value = hash;
-      }
-    
-        
       function encryption(){
-        var hashed_value = document.getElementById('name').value + document.getElementById('number').value + document.getElementById('date').value + document.getElementById('CCV').value;
-        var ciphertext = RSA_encryption(hashed_value, pubilc_key);
+        var data =  document.getElementById('cc-number').value + document.getElementById('cc-name').value + document.getElementById('cc-exp').value + document.getElementById('cc-csc').value;
+        var ciphertext = RSA_encryption(data, pubilc_key);
             
         document.getElementById('encrypted').innerHTML = ciphertext;
             
         document.getElementById('encrypted').value = ciphertext;
-      }
         
+        
+      }
+      function changeWindow(){
+        window.location.replace("confirm.php");
+      }
+      function validateForm() {
+        var numberCheck = document.forms["paymentForm"]["cc-number"].value
+        var nameCheck = document.forms["paymentForm"]["cc-name"].value;
+        var expCheck = document.forms["paymentForm"]["cc-exp"].value;
+        var cscCheck = document.forms["paymentForm"]["cc-csc"].value;
+        // if (numberCheck == "" || numberCheck == null || nameCheck == "" || nameCheck == null || expCheck == "" || expCheck == null || cscCheck == "" || cscCheck == null ) {
+        //   alert("All fields must be filled");
+        //   return false;
+        // }
+        if (numberCheck != "" || nameCheck != ""|| expCheck != "" || cscCheck != ""  ){
+         
+          window.location.replace("confirm.php");
+          return true
+        }
+      }
+     
     </script>
     <script type="text/javascript">
       var pubilc_key = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzdxaei6bt/xIAhYsdFdW62CGTpRX+GXoZkzqvbf5oOxw4wKENjFX7LsqZXxdFfoRxEwH90zZHLHgsNFzXe3JqiRabIDcNZmKS2F0A7+Mwrx6K2fZ5b7E2fSLFbC7FsvL22mN0KNAp35tdADpl4lKqNFuF7NT22ZBp/X3ncod8cDvMb9tl0hiQ1hJv0H8My/31w+F+Cdat/9Ja5d1ztOOYIx1mZ2FD2m2M33/BgGY/BusUKqSk9W91Eh99+tHS5oTvE8CI8g7pvhQteqmVgBbJOa73eQhZfOQJ0aWQ5m2i0NUPcmwvGDzURXTKW+72UKDz671bE7YAch2H+U7UQeawwIDAQAB-----END PUBLIC KEY-----";
@@ -110,31 +103,59 @@
         var decrypted = decrypt.decrypt(ciphertext);
         return decrypted;
       }
-      function cardnumber(inputtxt){
-        var cardno = /^(?:5[1-5][0-9]{14})$/;
-        if(inputtxt.value.match(cardno))
-        {
-          return true;
-        }
-        else
-        {
-          alert("Not a valid Mastercard number!");
-          return false;
-        }
-      }
+
+      
+
+
 
 
     </script>
 
+</head>
 
+<body>
+
+<!-- P A Y M E N T  D E T A I L S  B E L O W  -->
+<div class = "grid-container">
+  <div class="grid-item">
+  <h1 class="card-title">Checkout Payment Form Window</h1>
+    <form name="paymentForm" method="post" action="paymentServer.php">
+<h3 class="card-subtitle mb-2 text-muted"> Enter Card Details Below </h3> <br>
+
+
+<section>        
+  <label for="cc-number">Card number</label> <br>
+  <input id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="50" pattern="[\d ]{10,30}" required>
+</section>
+
+<section>        
+  <label for="cc-name">Name on card</label> <br>
+  <input id="cc-name" name="cc-name" autocomplete="cc-name" maxlength="30" pattern="[\p{L} \-\.]+" required>
+</section>
+
+<section id="cc-exp-csc">      
+  <div>
+    <label for="cc-exp">Expiry date</label> <br>
+    <input id="cc-exp" name="cc-exp" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" required>
+  </div> 
+  <div>
+    <label for="cc-csc">Security code</label> <br>
+    <input id="cc-csc" name="cc-csc" inputmode="numeric" maxlength="3" autocomplete="cc-csc" required><br><br><br>
+  </div>
+</section>  
+<p>PLACE ORDER BY PRESSING BLUE BUTTON BELOW: <br>
+<button onclick="encryption()" type="submit" name="encrypted" id="encrypted" style= "color:#007bff; background-color:#007bff;" >Place Order</button>
+</form>
+
+</div>
 
 
 <!-- C A R T  D E T A I L S  B E L O W -->
   <div class="grid-item">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Your Shopping Cart</h4>
-        <h6 class="card-subtitle mb-2 text-muted">Cart Details</h6>
+        <h1 class="card-title">Your Shopping Cart</h1>
+        <h4 class="card-subtitle mb-2 text-muted">Cart Details</h4>
         <table class="table table-hover">  
           <tr>    
             <th scope="col">Products</th>    
@@ -172,7 +193,7 @@
 
     </div>
   </div>
-  <button type="button" class="btn btn-primary" href='shopping.php'>Back to Shopping</button>
+  <button type="button" class="btn btn-link" style= "font-color:white;"><a href='index.php' >Back to Shopping </a></button>
   </div>
   </div>
   <?php
@@ -183,15 +204,9 @@
 
 
 
-                                        // $content= PHP_EOL . "Shopping Cart: " . PHP_EOL;
-                                        // $content = $content . "Item 1: " . $iPhone . PHP_EOL;
-                                        // $content = $content . "Item 2: " . $MacBook . PHP_EOL;
-                                        // $content = $content . "Item 3: " . $Airpods . PHP_EOL;
-                                        // $content = $content . "TOTAL " . $total . PHP_EOL;
-                                        // writeToFile("cart.txt", $content)
-                                        // ?>
+                                       ?>
 
 
-
+LAST CTRL Z
 
 <?php include 'footer.php';?>
