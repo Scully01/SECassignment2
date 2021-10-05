@@ -77,7 +77,7 @@
                     <div class="card-body text-center">
                     <br></br>
                     <br></br>
-                    <a href="ShoppingCart.php" class="stretched-link" style = "font-size:30px;color:black;">Shopping Cart</a>
+                    <a href="shoppingCart.php" class="stretched-link" style = "font-size:30px;color:black;">Shopping Cart</a>
                     <br></br>
                     <br></br>
                     </div>
