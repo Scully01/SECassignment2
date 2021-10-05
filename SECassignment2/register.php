@@ -1,86 +1,75 @@
+<?php require_once('phpfunctions.php');?>
+<!-- this php file is used to register the user onto the site.  -->
 <?php
-session_start();
-?>
-<html>
+// this php calls on the register user function in the phpfunctions page. 
+    $errors = [];
+    if(isset($_POST['register'])) {
+        $errors = registerUser($_POST);
 
-<head>
-    <?php include 'header.php'; ?>
-</head>
-
-<body>
-    <?php
-
-  
-
-    //Receive username from client side
-    $entered_username = $_POST['username'];
-    //Receive password from client side
-    $entered_password = $_POST['password'];
-
-    if ($entered_username != "" & $entered_password != "") {
-        $register = 0;
-        //read users.txt line by line
-        foreach (file('database/users.txt') as $line) {
-            //split each line as two parts
-            list($username, $password) = explode(",", $line);
-            //verify if an exist user with the same username
-            if ($username == $entered_username) {
-                $register = 1;
-                break;
-            }
-        }
-
-        if ($register == 1) {
-            echo "The user exists!";
-        } else {
-            //open a file named "text.txt"
-            $file = fopen("database/users.txt", "a");
-            //insert this user into the users.txt file
-            fwrite($file, $entered_username . "," . $entered_password . "\n");
-            //close the "$file"
-            fclose($file);
-            echo "The user has been added to the database/users.txt";
+        if(count($errors) === 0) {
             header('Location: login.php');
+            exit();
         }
-    } else {
-        echo "Username and Password cannot be empty!";
     }
-    ?>
-    <div class="container" style="margin-top:30px">
-        <div class="row">
-            <div class="col-sm-8">
-                <h2>Register</h2>
-                <form id="registration_form" action="register.php" method="post">
-                    <div>
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" />
-                    </div>
+?>
 
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" />
-                    </div>
-                    <div class="submit-button">
-                        <input type="submit" name="Register" value="Register" onclick="hashpassword()" />
-                    </div>
-                </form>
-                <script src="sha256.js"></script>
-                <script type="text/javascript">
-                    function hashPassword() {
-                        var input = document.getElementById('password').value;
 
-                        var hash = SHA256.hash(input);
 
-                        document.getElementById("password").innerHTML = hash;
-                        document.getElementById("password").value = hash;
-                    }
-                </script>
-            </div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adrenaline Buzz Club</title>
+    <link rel="stylesheet" href="A2.css">
+    <link rel="stylesheet" href="logo.css">
+</head>
+<?php require_once('header.php');?>
+
+    <div class="container">
+        <!-- below is the code that presents the form that users use to register to the page -->
+        <!-- //a combination of the code in this file is attributed and inspired by week 8 of Web Programming classes from Shekhar and Matthew, aswell as online resources; php.net and w3schools.  -->
+
+        <div class="grid1 header">
+            Sign up to our great membership deals and start enjoying the buzz now!
         </div>
+        <div class="grid2 contact">
+            <h2> Register Here</h2>
+            <form method="post">
+            <div class="form-group">
+                    <label for="firstname">First name</label> <br>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname"
+                        <?php displayValue($_POST, 'firstname'); ?> />
+                    <?php displayError($errors, 'firstname'); ?>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Last name</label><br>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname"
+                        <?php displayValue($_POST, 'lastname'); ?> />
+                    <?php displayError($errors, 'lastname'); ?>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label><br>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="email"
+                        <?php displayValue($_POST, 'email'); ?> />
+                    <?php displayError($errors, 'email'); ?>
+                </div>
+                     
+                <div class="form-group">
+                    <label for="password">Create Password</label><br>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="At least 6 characters" />
+                    <?php displayError($errors, 'password'); ?>
+                </div>
+
+                <button type="submit" class="btn btn-primary" name="register" value="register">Register</button>
+                </form> 
+        </div>
+        
     </div>
-    <footer>
-        <?php include 'footer.php'; ?>
-    </footer>
+    <?php require_once('footer.php');?>
 </body>
 
 </html>
+
