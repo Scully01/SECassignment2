@@ -35,6 +35,9 @@
           <li class="nav-item">
             <a class="nav-link active" href="shopping.php">Shopping</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="orders.php">Orders</a>
+          </li>
           <?php if(isUserLoggedIn()) { ?>
                 <li class="nav-item">
                   <a class="nav-link active" href="shoppingCart.php">Shopping Cart</a>

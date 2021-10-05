@@ -3,11 +3,7 @@
     <head>
 <?php include 'header.php';
 include 'bouncer.php';
-//  function writeToFile($fileName, $content){
-//                                             $file = fopen("/Secure_Eccomerce/Assignment2/SECassignment2/SECassignment2/database/cart.txt","a"); 
-//                                             fwrite($file, $content);
-//                                             fclose($file);
-//                                         } 
+                                      
                                         ?>
 
 <style>
@@ -68,25 +64,7 @@ include 'bouncer.php';
         
         
       }
-      function changeWindow(){
-        window.location.replace("confirm.php");
-      }
-      function validateForm() {
-        var numberCheck = document.forms["paymentForm"]["cc-number"].value
-        var nameCheck = document.forms["paymentForm"]["cc-name"].value;
-        var expCheck = document.forms["paymentForm"]["cc-exp"].value;
-        var cscCheck = document.forms["paymentForm"]["cc-csc"].value;
-        // if (numberCheck == "" || numberCheck == null || nameCheck == "" || nameCheck == null || expCheck == "" || expCheck == null || cscCheck == "" || cscCheck == null ) {
-        //   alert("All fields must be filled");
-        //   return false;
-        // }
-        if (numberCheck != "" || nameCheck != ""|| expCheck != "" || cscCheck != ""  ){
-         
-          window.location.replace("confirm.php");
-          return true
-        }
-      }
-     
+      
     </script>
     <script type="text/javascript">
       var pubilc_key = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzdxaei6bt/xIAhYsdFdW62CGTpRX+GXoZkzqvbf5oOxw4wKENjFX7LsqZXxdFfoRxEwH90zZHLHgsNFzXe3JqiRabIDcNZmKS2F0A7+Mwrx6K2fZ5b7E2fSLFbC7FsvL22mN0KNAp35tdADpl4lKqNFuF7NT22ZBp/X3ncod8cDvMb9tl0hiQ1hJv0H8My/31w+F+Cdat/9Ja5d1ztOOYIx1mZ2FD2m2M33/BgGY/BusUKqSk9W91Eh99+tHS5oTvE8CI8g7pvhQteqmVgBbJOa73eQhZfOQJ0aWQ5m2i0NUPcmwvGDzURXTKW+72UKDz671bE7YAch2H+U7UQeawwIDAQAB-----END PUBLIC KEY-----";
@@ -105,10 +83,6 @@ include 'bouncer.php';
       }
 
       
-
-
-
-
     </script>
 
 </head>
@@ -206,7 +180,5 @@ include 'bouncer.php';
 
                                        ?>
 
-
-LAST CTRL Z
 
 <?php include 'footer.php';?>

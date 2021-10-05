@@ -32,12 +32,14 @@
                         <a>Services</a>
                         <ul>
                             <li><a href="login.php">Login</a></li>
+                            <li><a href="register.php">Register</a></li>
                             <li><a href="shopping.php">Shopping</a></li>
                             <li><a href="ShoppingCart.php">Shopping Cart</a></li>
+                            <li><a href="orders.php">Orders</a></li>
                         </ul>
                     </li>
                     <li><a href="contactus.php">Contact Us</a></li>
-                    <li><a href="register.php">Register</a></li>
+                    <li><a href="sitemap.php">Sitemap</a></li>
                     </ul>
             </ul>
 
