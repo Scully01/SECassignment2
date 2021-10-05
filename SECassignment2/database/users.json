@@ -26,5 +26,12 @@
         "email": "matt@email.com",
         "password": "Abc!23",
         "referral": null
+    },
+    "jordan@email.com": {
+        "firstname": "Mike",
+        "lastname": "Jordan",
+        "email": "jordan@email.com",
+        "password": "Abc!23",
+        "referral": null
     }
 }
