@@ -1,84 +1,59 @@
+<!-- a combination of code inside this php file is partly attributed  the code seen in week 8 by Shekhar Kalra and Matther Bolger from RMIT University. -->
+<?php require_once('phpfunctions.php');?>
+<!-- this is the page that allows users to login to the website -->
 <?php
-    session_start();
-?>
-<html>
+$errors = [];
+//if the form (login page) is filled out, the information will be POSTED to login and user will be logged in
+if(isset($_POST['login'])) {
+    $errors = loginUser($_POST);
 
-<head>
-    <?php include 'header.php'; ?>
-</head>
-
-<body>
-    <?php
-
-  
-    //Receive username from client side
-    $entered_username = $_POST['username'];
-    //Receive password from client side
-    $entered_password = $_POST['password'];
-
-    if ($entered_username != "" & $entered_password != "") {
-        $login = 0;
-        //read users.txt line by line
-        foreach (file('database/users.txt') as $line) {
-            //split each line as two parts
-            list($username, $password) = explode(",", $line);
-            //verify if an exist user with the same username
-            if ($username == $entered_username) {
-                //verify the password
-                if ($password == $entered_password . "\n") {
-                    $login = 1;
-                    break;
-                }
-            }
-        }
-
-        if ($login == 0) {
-            echo "Wrong Username or Password!";
-        } else {
-            // echo "Login successful!";
-            $_SESSION['login'] = "YES";
-            header('Location: shopping.php');
-            // redirect the user to the content pag
-        }
-    } else {
-        echo "Username and Password cannot be empty!";
+    if(count($errors) === 0) {
+        header('Location: shopping.php');
+        exit();
     }
-    ?>
-    <div class="container" style="margin-top:30px">
-        <div class="row">
-            <div class="col-sm-8">
-                <h2>Login</h2>
-                <form id="login_form" action="login.php" method="post">
-                    <div>
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" />
-                    </div>
+    //if there are no errors and the user logs in, the page will load onto myfitness
+}
+?>
 
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" />
-                    </div>
-                    <div class="submit-button">
-                        <input type="submit" name="Login" value="Login" onclick="hashpassword()" />
-                    </div>
-                </form>
-                <script src="sha256.js"></script>
-                <script type="text/javascript">
-                    function hashPassword() {
-                        var input = document.getElementById('password').value;
+<!DOCTYPE html>
+<html>
+<head>
 
-                        var hash = SHA256.hash(input);
+</head>
+<?php require_once('header.php');?>
 
-                        document.getElementById("password").innerHTML = hash;
-                        document.getElementById("password").value = hash;
-                    }
-                </script>
-            </div>
+
+    
+        <div class= container>
+        <div class="grid1 header">
+            Login to westBorn Shopping
         </div>
-    </div>
-    <footer>
-        <?php include 'footer.php'; ?>
-    </footer>
+        <!-- form for users to login. -->
+                <div class="grid2 contact"> <h2>Login: </h2><br> 
+                    <form method="post">
+                        <div class="form-group">
+                            <label for= "email"> Email</label><br>
+                            <input type= "text" class="form-control" id="email" name="email" placeholder="Email"
+                                <?php displayValue($_POST, 'email'); ?> />
+                            <?php displayError($errors, 'email'); ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label><br>
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Password" />
+                            <?php displayError($errors, 'password'); ?>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" name="login" value="login">Login</button>
+                    </form>
+                 </div> 
+
+
+
+                 <?php require_once('footer.php');?>
+         </div>
+
 </body>
 
 </html>
