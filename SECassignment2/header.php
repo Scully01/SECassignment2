@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <head>
+<?php require_once('phpfunctions.php');?>
     <title>Secure Electronic Commerce</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +13,9 @@
 </head>
 
 <body> 
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">WGS17</a>
@@ -21,27 +25,37 @@
 
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.php">Home
-            <span class="visually-hidden"></span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="shopping.php">Shopping</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="ShoppingCart.php">Shopping Cart</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="orders.php">Orders</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="register.php">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Login</a>
-        </li>
+     
         
+              
+      
+              <li class="nav-item">
+            <a class="nav-link active" href="index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="shopping.php">Shopping</a>
+          </li>
+          <?php if(isUserLoggedIn()) { ?>
+                <li class="nav-item">
+                  <a class="nav-link active" href="shoppingCart.php">Shopping Cart</a>
+              </li>
+              <?php } ?>
+          <?php if(isUserLoggedIn()) { ?>
+
+<a> Welcome, <?= getLoggedInUser()['firstname']; ?> </a>
+<li class="nav-item">
+<a class="nav-link active" href="logout.php">Logout</a>
+</li>
+<?php } else { ?>
+<li class="nav-item">
+<a class="nav-link active" href="login.php">Login</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" href="register.php">Registration</a>
+</li>
+
+
+<?php } ?>
       </ul>
       <form class="d-flex">
         <input class="form-control me-sm-2" type="text" placeholder="Search">
@@ -60,3 +74,4 @@
             </div>
         </div>
     </div>
+        </body>
